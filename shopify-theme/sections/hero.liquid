@@ -3,7 +3,7 @@
     {%- if section.settings.image != blank -%}
       {{ section.settings.image | image_url: width: 2000 | image_tag: loading: 'lazy', class: 'hero__img' }}
     {%- else -%}
-      {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      <img src="{{ 'hero-banner-default.png' | asset_url }}" alt="Default hero banner" loading="lazy" class="hero__img">
     {%- endif -%}
   </div>
   
