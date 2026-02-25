@@ -1,0 +1,48 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "settings": {}
+    },
+    "help": {
+      "type": "cta-banner",
+      "settings": {
+        "bg_color": "#E2F5E9",
+        "heading": "Need Help? Talk to one of our Experts!"
+      }
+    },
+    "tabs": {
+      "type": "product-tabs",
+      "settings": {}
+    },
+    "video": {
+      "type": "product-video",
+      "settings": {
+        "heading": "How to Buy: Wheelchairs Advice from the experts"
+      }
+    },
+    "related": {
+      "type": "collection-slider",
+      "settings": {
+        "heading": "Related Products"
+      }
+    },
+    "reviews": {
+      "type": "product-reviews",
+      "settings": {}
+    },
+    "pre-footer": {
+      "type": "pre-footer-contact",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "help",
+    "tabs",
+    "video",
+    "related",
+    "reviews",
+    "pre-footer"
+  ]
+}

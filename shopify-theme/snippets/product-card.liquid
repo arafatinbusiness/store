@@ -1,0 +1,41 @@
+<div class="product-card">
+  <div class="product-card__image-wrapper">
+    <a href="{{ product.url }}">
+      <img 
+        src="{{ product.featured_image | image_url: width: 600 }}" 
+        alt="{{ product.title | escape }}"
+        loading="lazy"
+        class="product-card__image"
+      >
+    </a>
+    
+    {%- if product.available -%}
+      <button 
+        class="quick-add-button"
+        onclick="document.dispatchEvent(new CustomEvent('cart:add', { detail: { id: {{ product.first_available_variant.id }}, quantity: 1 } }))"
+      >
+        Quick Add
+      </button>
+    {%- endif -%}
+  </div>
+
+  <div class="product-card__info">
+    <h3 class="product-card__title">
+      <a href="{{ product.url }}">{{ product.title }}</a>
+    </h3>
+    
+    <div class="product-card__price">
+      {{ product.price | money }}
+    </div>
+
+    {%- comment -%}
+      Requirement #1: Metafields Integration
+      Displaying custom medical specifications from Shopify Metafields
+    {%- endcomment -%}
+    {%- if product.metafields.custom.specifications != blank -%}
+      <div class="product-card__specs">
+        <span class="label">Spec:</span> {{ product.metafields.custom.specifications }}
+      </div>
+    {%- endif -%}
+  </div>
+</div>

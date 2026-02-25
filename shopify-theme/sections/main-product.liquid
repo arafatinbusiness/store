@@ -1,0 +1,73 @@
+<div class="product-page" style="background-color: {{ section.settings.bg_color }};">
+  <div class="container">
+    <div class="product-main grid lg:grid-cols-2 gap-12 py-12">
+      {/* Gallery */}
+      <div class="product-gallery flex gap-4">
+        <div class="thumbnails flex flex-col gap-4">
+          {%- for image in product.images -%}
+            <div class="thumbnail-item w-20 h-20 bg-gray-50 rounded-xl border border-gray-100 flex items-center justify-center cursor-pointer hover:border-tula-green">
+              {{ image | image_url: width: 100 | image_tag: loading: 'lazy' }}
+            </div>
+          {%- endfor -%}
+        </div>
+        <div class="main-image flex-1 bg-gray-50 rounded-2xl border border-gray-100 flex items-center justify-center relative">
+          {{ product.featured_image | image_url: width: 800 | image_tag: class: 'max-w-full h-auto' }}
+        </div>
+      </div>
+
+      {/* Info */}
+      <div class="product-info">
+        <p class="sku text-[10px] text-gray-400 font-bold uppercase mb-2">SKU# {{ product.selected_or_first_available_variant.sku }}</p>
+        <h1 class="h1 mb-2">{{ product.title }}</h1>
+        <p class="vendor text-tula-green font-bold mb-4">By {{ product.vendor }}</p>
+        
+        <div class="rating flex items-center gap-4 mb-6">
+          <div class="stars text-yellow-400">★★★★★</div>
+          <span class="text-[10px] text-gray-400 font-bold uppercase">4.5 | 260 REVIEWS</span>
+        </div>
+
+        <p class="price text-4xl font-black text-tula-green mb-8">{{ product.price | money }}</p>
+
+        {%- form 'product', product -%}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          
+          <div class="variants space-y-4 mb-8">
+            {%- unless product.has_only_default_variant -%}
+              {%- for option in product.options_with_values -%}
+                <div class="option-group">
+                  <label class="block text-xs font-bold mb-2">{{ option.name }}</label>
+                  <select name="options[{{ option.name }}]" class="w-full bg-gray-50 border border-gray-100 rounded-xl px-6 py-4 text-sm font-medium">
+                    {%- for value in option.values -%}
+                      <option value="{{ value | escape }}" {% if option.selected_value == value %}selected{% endif %}>
+                        {{ value }}
+                      </option>
+                    {%- endfor -%}
+                  </select>
+                </div>
+              {%- endfor -%}
+            {%- endunless -%}
+          </div>
+
+          <div class="actions flex gap-4">
+            <button type="submit" class="button button--primary flex-1 py-4">Add to cart</button>
+            <button type="button" class="button button--secondary flex-1 py-4">Buy Now</button>
+          </div>
+        {%- endform -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Main Product",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    }
+  ]
+}
+{% endschema %}

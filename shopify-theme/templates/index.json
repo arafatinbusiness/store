@@ -1,0 +1,41 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {}
+    },
+    "trust": {
+      "type": "trust-bar",
+      "settings": {}
+    },
+    "diagram": {
+      "type": "interactive-diagram",
+      "settings": {}
+    },
+    "departments": {
+      "type": "department-slider",
+      "settings": {}
+    },
+    "cta": {
+      "type": "cta-banner",
+      "settings": {}
+    },
+    "partners": {
+      "type": "partners",
+      "settings": {}
+    },
+    "faq": {
+      "type": "faq",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero",
+    "trust",
+    "diagram",
+    "departments",
+    "cta",
+    "partners",
+    "faq"
+  ]
+}

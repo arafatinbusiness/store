@@ -1,0 +1,31 @@
+{
+  "sections": {
+    "hero": {
+      "type": "about-hero",
+      "settings": {
+        "subtitle": "Contact"
+      }
+    },
+    "form": {
+      "type": "contact-form",
+      "settings": {}
+    },
+    "help": {
+      "type": "cta-banner",
+      "settings": {
+        "bg_color": "#1A3026",
+        "heading": "Don't waste time and request what you need now"
+      }
+    },
+    "faq": {
+      "type": "faq",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero",
+    "form",
+    "help",
+    "faq"
+  ]
+}

@@ -1,0 +1,102 @@
+<link rel="stylesheet" href="{{ 'header.css' | asset_url }}" media="print" onload="this.media='all'">
+
+<header class="header-wrapper">
+  {%- if section.settings.show_announcement -%}
+    <div class="announcement-bar" style="background-color: {{ section.settings.announcement_bg }};">
+      <div class="container">
+        <p>{{ section.settings.announcement_text }}</p>
+      </div>
+    </div>
+  {%- endif -%}
+
+  <div class="header container">
+    <div class="header__logo">
+      <a href="{{ routes.root_url }}" class="header__heading-link">
+        {%- if section.settings.logo != blank -%}
+          {{ section.settings.logo | image_url: width: 150 | image_tag: class: 'header__heading-logo' }}
+        {%- else -%}
+          <span class="h2">🌱 {{ shop.name }}</span>
+        {%- endif -%}
+      </a>
+    </div>
+
+    <div class="header__search">
+      <form action="{{ routes.search_url }}" method="get" role="search" class="search">
+        <input type="text" name="q" placeholder="Search Products" class="search__input">
+        <button type="submit" class="search__button">
+          {% render 'icon-search' %}
+        </button>
+      </form>
+    </div>
+
+    <div class="header__icons">
+      <div class="header__support dropdown">
+        <button class="dropdown__button">Support {% render 'icon-chevron-down' %}</button>
+      </div>
+      
+      <a href="{{ routes.account_url }}" class="header__icon header__icon--account">
+        {% render 'icon-account' %}
+        <span>Account</span>
+      </a>
+
+      <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart" id="cart-icon-bubble">
+        {% render 'icon-cart' %}
+        <span>Cart</span>
+        <div class="cart-count-bubble">
+          {%- if cart.item_count < 100 -%}
+            <span aria-hidden="true">{{ cart.item_count }}</span>
+          {%- endif -%}
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <nav class="header__inline-menu container">
+    <ul class="list-menu list-menu--inline" role="list">
+      {%- for link in section.settings.menu.links -%}
+        <li>
+          <a href="{{ link.url }}" class="header__menu-item list-menu__item link link--text focus-inset">
+            <span {%- if link.current %} class="header__active-menu-item"{% endif %}>{{ link.label | escape }}</span>
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </nav>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "default": "main-menu",
+      "label": "Menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_announcement",
+      "label": "Show announcement",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Announcement text",
+      "default": "FREE USA SHIPPING ON ORDER $150+"
+    },
+    {
+      "type": "color",
+      "id": "announcement_bg",
+      "label": "Announcement background",
+      "default": "#70E08B"
+    }
+  ]
+}
+{% endschema %}

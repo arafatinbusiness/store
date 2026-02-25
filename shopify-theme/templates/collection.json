@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "slider": {
+      "type": "collection-slider",
+      "settings": {}
+    },
+    "main": {
+      "type": "main-collection",
+      "settings": {}
+    }
+  },
+  "order": [
+    "slider",
+    "main"
+  ]
+}

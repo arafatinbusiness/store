@@ -1,0 +1,48 @@
+<div class="about-hero" style="background-color: {{ section.settings.bg_color }};">
+  <div class="container text-center">
+    <p class="about-hero__subtitle">{{ section.settings.subtitle }}</p>
+    <h1 class="about-hero__title">{{ section.settings.title }}</h1>
+    <div class="about-hero__description">{{ section.settings.description }}</div>
+  </div>
+  
+  <div class="about-hero__pattern">
+    {%- comment -%} Dot pattern implementation in CSS {%- endcomment -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "About Hero",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#E2F5E9"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "About Us"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Lorem Ipsum dolor sit amet consectetur"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Consectetur adipiscing elit. Nulla blandit turpis sed commodo consequat.</p>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Hero"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,43 @@
+<div class="product-reviews container py-24">
+  <h2 class="h2 text-center mb-16">{{ section.settings.heading }}</h2>
+  
+  <div class="reviews-summary grid md:grid-cols-2 gap-12 mb-16 items-center">
+    <div class="overall-rating text-center border-r border-gray-100">
+      <p class="text-6xl font-black mb-2">4.6</p>
+      <div class="stars text-tula-green text-xl mb-2">★★★★★</div>
+      <p class="text-xs text-gray-400 font-bold uppercase">260 Reviews</p>
+    </div>
+    <div class="rating-bars space-y-2">
+      {%- for i in (1..5) reversed -%}
+        <div class="bar-item flex items-center gap-4">
+          <span class="text-xs font-bold w-4">{{ i }} ★</span>
+          <div class="bar-bg flex-1 h-1.5 bg-gray-100 rounded-full">
+            <div class="bar-fill h-full bg-tula-green" style="width: {{ i | times: 15 | plus: 20 }}%"></div>
+          </div>
+          <span class="text-[10px] text-gray-400 w-8">{{ i | times: 1000 }}</span>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+
+  <div class="reviews-list space-y-12">
+    {%- comment -%} This would be replaced by Shopify's native reviews or an app like Judge.me {%- endcomment -%}
+    <div id="shopify-product-reviews" data-id="{{ product.id }}">
+      {{ product.metafields.spr.reviews }}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product Reviews",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Verified Reviews from people like you!"
+    }
+  ]
+}
+{% endschema %}

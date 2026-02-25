@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+@theme {
+  --color-tula-green: #70E08B;
+  --color-tula-dark: #1A3026;
+  --color-tula-light: #F4FBF7;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply font-sans text-tula-dark bg-white;
+  }
+}
+
+.glass-card {
+  @apply bg-white/10 backdrop-blur-md border border-white/20;
+}
+
+.accordion-item {
+  @apply border-b border-tula-dark/10 py-4;
+}

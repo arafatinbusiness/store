@@ -1,0 +1,54 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Tula Medical Custom",
+    "theme_version": "1.0.0",
+    "theme_author": "Shopify Administrator",
+    "theme_documentation_url": "https://github.com/tula-medical/theme",
+    "theme_support_url": "https://hello.tulacare.com"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Brand Colors"
+      },
+      {
+        "type": "color",
+        "id": "colors_accent_1",
+        "label": "Accent 1 (Tula Green)",
+        "default": "#70E08B"
+      },
+      {
+        "type": "color",
+        "id": "colors_text",
+        "label": "Primary Text (Dark)",
+        "default": "#1A3026"
+      },
+      {
+        "type": "color",
+        "id": "colors_background",
+        "label": "Background",
+        "default": "#FFFFFF"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "type_header_font",
+        "label": "Header Font",
+        "default": "inter_n7"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_body_font",
+        "label": "Body Font",
+        "default": "inter_n4"
+      }
+    ]
+  }
+]

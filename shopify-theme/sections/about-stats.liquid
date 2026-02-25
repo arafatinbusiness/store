@@ -1,0 +1,39 @@
+<div class="about-stats container">
+  <div class="stats-grid">
+    {%- for block in section.blocks -%}
+      <div class="stat-item">
+        <span class="stat-number">{{ block.settings.number }}</span>
+        <p class="stat-label">{{ block.settings.label }}</p>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "About Stats",
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Number"
+        },
+        {
+          "type": "textarea",
+          "id": "label",
+          "label": "Label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Stats"
+    }
+  ]
+}
+{% endschema %}

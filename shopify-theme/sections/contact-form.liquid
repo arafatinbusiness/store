@@ -1,0 +1,139 @@
+<div class="contact-form-section container py-24">
+  <div class="grid md:grid-cols-2 gap-16">
+    <div class="contact-form-wrapper">
+      <h2 class="h2 mb-8">{{ section.settings.form_heading }}</h2>
+      
+      {%- form 'contact' -%}
+        {%- if form.posted_successfully? -%}
+          <p class="form-success bg-tula-green/20 p-4 rounded-lg mb-6">
+            {{ 'contact.form.post_success' | t }}
+          </p>
+        {%- endif -%}
+
+        <div class="grid grid-cols-2 gap-6 mb-6">
+          <div class="field">
+            <label class="block text-xs font-bold text-gray-400 uppercase mb-2">First Name</label>
+            <input type="text" name="contact[first_name]" class="w-full border border-gray-200 rounded-lg px-4 py-3">
+          </div>
+          <div class="field">
+            <label class="block text-xs font-bold text-gray-400 uppercase mb-2">Last Name</label>
+            <input type="text" name="contact[last_name]" class="w-full border border-gray-200 rounded-lg px-4 py-3">
+          </div>
+        </div>
+
+        <div class="field mb-6">
+          <label class="block text-xs font-bold text-gray-400 uppercase mb-2">Email Address</label>
+          <input type="email" name="contact[email]" class="w-full border border-gray-200 rounded-lg px-4 py-3" required>
+        </div>
+
+        <div class="field mb-6">
+          <label class="block text-xs font-bold text-gray-400 uppercase mb-2">Order Number (optional)</label>
+          <input type="text" name="contact[order_number]" class="w-full border border-gray-200 rounded-lg px-4 py-3">
+        </div>
+
+        <div class="field mb-6">
+          <label class="block text-xs font-bold text-gray-400 uppercase mb-2">Message</label>
+          <textarea name="contact[body]" rows="6" class="w-full border border-gray-200 rounded-lg px-4 py-3 resize-none"></textarea>
+        </div>
+
+        <button type="submit" class="button button--primary w-full py-4">
+          {{ section.settings.submit_label }}
+        </button>
+      {%- endform -%}
+    </div>
+
+    <div class="contact-info-wrapper">
+      <h2 class="h2 mb-8">{{ section.settings.info_heading }}</h2>
+      <div class="info-card bg-[#E2F5E9] rounded-2xl overflow-hidden">
+        {%- for block in section.blocks -%}
+          <div class="info-item p-6 flex items-center gap-4 {% if forloop.index == 2 %}bg-white/50{% endif %}">
+            <div class="icon w-10 h-10 bg-white rounded-full flex items-center justify-center text-tula-green">
+              {%- if block.settings.icon == 'clock' -%}
+                {% render 'icon-plus' %}
+              {%- elsif block.settings.icon == 'phone' -%}
+                {% render 'icon-phone' %}
+              {%- else -%}
+                {% render 'icon-instagram' %}
+              {%- endif -%}
+            </div>
+            <span class="text-sm font-medium">{{ block.settings.text }}</span>
+          </div>
+        {%- endfor -%}
+        
+        <div class="info-footer p-8 space-y-6">
+          <div class="note text-sm text-gray-600 leading-relaxed">
+            {{ section.settings.note }}
+          </div>
+          <div class="return-link text-sm font-bold">
+            {{ section.settings.return_text }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Contact Form & Info",
+  "settings": [
+    {
+      "type": "text",
+      "id": "form_heading",
+      "label": "Form Heading",
+      "default": "Contat US"
+    },
+    {
+      "type": "text",
+      "id": "submit_label",
+      "label": "Submit Button Label",
+      "default": "Submit"
+    },
+    {
+      "type": "text",
+      "id": "info_heading",
+      "label": "Info Heading",
+      "default": "Customer Service"
+    },
+    {
+      "type": "richtext",
+      "id": "note",
+      "label": "Note Text"
+    },
+    {
+      "type": "richtext",
+      "id": "return_text",
+      "label": "Return Text"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "info",
+      "name": "Info Item",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "clock", "label": "Clock" },
+            { "value": "phone", "label": "Phone" },
+            { "value": "email", "label": "Email" }
+          ],
+          "default": "clock"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact Form & Info"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,127 @@
+<div class="cta-banner" style="background-color: {{ section.settings.bg_color }};">
+  <div class="container flex flex-col md:flex-row items-center justify-center gap-8 py-12">
+    <h2 class="cta-banner__heading text-center md:text-left" style="color: {{ section.settings.text_color }};">
+      {{ section.settings.heading }}
+    </h2>
+    
+    <div class="cta-banner__actions flex flex-wrap justify-center gap-4">
+      {%- if section.settings.show_phone -%}
+        <div class="cta-phone flex items-center gap-2" style="color: {{ section.settings.accent_color }};">
+          {% render 'icon-phone' %}
+          {%- if section.settings.phone_number != blank -%}
+            <span class="font-bold">{{ section.settings.phone_number }}</span>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.button_label != blank -%}
+        <a href="{{ section.settings.button_link }}" class="button" style="background-color: {{ section.settings.accent_color }}; color: {{ section.settings.button_text_color }};">
+          {{ section.settings.button_label }}
+        </a>
+      {%- endif -%}
+
+      {%- for block in section.blocks -%}
+        <a href="{{ block.settings.link }}" class="button button--white flex items-center gap-2 shadow-sm">
+          {%- if block.settings.icon == 'phone' -%}{% render 'icon-phone' %}
+          {%- elsif block.settings.icon == 'message' -%}{% render 'icon-instagram' %}
+          {%- else -%}{% render 'icon-account' %}{%- endif -%}
+          {{ block.settings.label }}
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "CTA Banner",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#1A3026"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#70E08B"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Don't waste time and request what you need now"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_phone",
+      "label": "Show Phone Icon",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "phone_number",
+      "label": "Phone Number"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Contact Our Team"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#1A3026"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "extra_button",
+      "name": "Extra Button",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "phone", "label": "Phone" },
+            { "value": "message", "label": "Message" },
+            { "value": "agent", "label": "Agent" }
+          ],
+          "default": "phone"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "CTA Banner"
+    }
+  ]
+}
+{% endschema %}

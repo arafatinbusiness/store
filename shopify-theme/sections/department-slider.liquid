@@ -1,0 +1,68 @@
+<div class="department-slider container">
+  <h2 class="section-heading text-center">{{ section.settings.heading }}</h2>
+  
+  <div class="slider-wrapper">
+    <div class="slider-track">
+      {%- for block in section.blocks -%}
+        <div class="department-card">
+          <div class="department-card__image">
+            {%- if block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: 400 | image_tag }}
+            {%- else -%}
+              {{ 'image' | placeholder_svg_tag }}
+            {%- endif -%}
+          </div>
+          <h3 class="department-card__title">{{ block.settings.title }}</h3>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+  
+  <div class="slider-dots">
+    <div class="dot active"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Department Slider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Shop By Department"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "department",
+      "name": "Department",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Department Slider"
+    }
+  ]
+}
+{% endschema %}

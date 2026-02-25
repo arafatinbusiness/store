@@ -1,0 +1,61 @@
+<div class="interactive-diagram" style="background-color: {{ section.settings.bg_color }};">
+  <div class="container">
+    <div class="diagram-wrapper">
+      <div class="diagram-center">
+        <h2 class="diagram-heading">{{ section.settings.center_text }}</h2>
+      </div>
+      
+      {%- for block in section.blocks -%}
+        <div class="diagram-node node-{{ forloop.index }}" style="--angle: {{ forloop.index0 | times: 90 }}deg">
+          <span class="node-text">{{ block.settings.text }}</span>
+        </div>
+      {%- endfor -%}
+      
+      <div class="diagram-orbit"></div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Interactive Diagram",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#1A3026"
+    },
+    {
+      "type": "textarea",
+      "id": "center_text",
+      "label": "Center Text",
+      "default": "More than equipment. A clear, digital and welcoming experience."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "node",
+      "name": "Node",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Node Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Interactive Diagram",
+      "blocks": [
+        { "type": "node", "settings": { "text": "Technology that simplifies" } },
+        { "type": "node", "settings": { "text": "Less confusion" } },
+        { "type": "node", "settings": { "text": "A real relief" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

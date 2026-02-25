@@ -1,0 +1,62 @@
+<div class="product-video container py-12">
+  <div class="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 grid md:grid-cols-2 gap-12 items-center">
+    <div class="video-info">
+      <div class="icon w-12 h-12 bg-tula-green rounded-full flex items-center justify-center mb-6">
+        {% render 'icon-plus' %}
+      </div>
+      <h2 class="h2 mb-6">{{ section.settings.heading }}</h2>
+      <div class="description text-gray-500 mb-8">{{ section.settings.description }}</div>
+      <a href="{{ section.settings.button_link }}" class="button button--secondary">
+        {{ section.settings.button_label }}
+      </a>
+    </div>
+    
+    <div class="video-player relative aspect-video rounded-2xl overflow-hidden group cursor-pointer">
+      {%- if section.settings.video_url != blank -%}
+        <iframe src="https://www.youtube.com/embed/{{ section.settings.video_url.id }}" class="absolute inset-0 w-full h-full" frameborder="0" allowfullscreen></iframe>
+      {%- else -%}
+        <img src="https://picsum.photos/seed/video/800/450" class="w-full h-full object-cover">
+        <div class="absolute inset-0 flex items-center justify-center bg-black/20">
+          <div class="play-button w-16 h-16 bg-white rounded-full flex items-center justify-center">
+            <div class="play-icon"></div>
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product Video",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "label": "Video URL",
+      "accept": ["youtube", "vimeo"]
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Get More Help"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ]
+}
+{% endschema %}

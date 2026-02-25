@@ -1,0 +1,66 @@
+<div class="collection-slider container">
+  <div class="section-header flex justify-between items-center mb-8">
+    <h2 class="h2">{{ section.settings.heading }}</h2>
+    <div class="slider-controls flex gap-2">
+      <button class="slider-prev">{% render 'icon-chevron-left' %}</button>
+      <button class="slider-next">{% render 'icon-chevron-right' %}</button>
+    </div>
+  </div>
+
+  <div class="slider-track flex gap-4 overflow-x-auto no-scrollbar">
+    {%- for block in section.blocks -%}
+      <div class="slider-item min-w-[200px] bg-white rounded-xl p-4 border border-gray-100 text-center">
+        <div class="item-image mb-4">
+          {%- if block.settings.image != blank -%}
+            {{ block.settings.image | image_url: width: 300 | image_tag }}
+          {%- else -%}
+            {{ 'image' | placeholder_svg_tag }}
+          {%- endif -%}
+        </div>
+        <span class="font-bold text-sm">{{ block.settings.title }}</span>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collection Slider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Shop By Department"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "department",
+      "name": "Department",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Slider"
+    }
+  ]
+}
+{% endschema %}

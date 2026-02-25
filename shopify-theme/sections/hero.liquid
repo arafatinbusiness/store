@@ -1,0 +1,82 @@
+<div class="hero section-{{ section.id }}-padding">
+  <div class="hero__image">
+    {%- if section.settings.image != blank -%}
+      {{ section.settings.image | image_url: width: 2000 | image_tag: loading: 'lazy', class: 'hero__img' }}
+    {%- else -%}
+      {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+    {%- endif -%}
+  </div>
+  
+  <div class="hero__content container">
+    <div class="hero__text-box">
+      {%- if section.settings.show_social_proof -%}
+        <div class="hero__social-proof">
+          <div class="stars">★★★★★</div>
+          <span class="label">{{ section.settings.social_proof_text }}</span>
+        </div>
+      {%- endif -%}
+      
+      <h1 class="hero__title h0">{{ section.settings.title }}</h1>
+      <div class="hero__description">{{ section.settings.description }}</div>
+      
+      {%- if section.settings.button_label != blank -%}
+        <a href="{{ section.settings.button_link }}" class="button button--primary">
+          {{ section.settings.button_label }}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Taking care of you can be simpler than it seems."
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>When you're facing a new diagnosis, the last thing you need is confusion, delays, or unanswered questions.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Contact Our Team"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social_proof",
+      "label": "Show Social Proof",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "social_proof_text",
+      "label": "Social Proof Text",
+      "default": "SOCIAL PROF HERE"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero"
+    }
+  ]
+}
+{% endschema %}

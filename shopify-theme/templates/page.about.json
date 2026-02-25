@@ -1,0 +1,42 @@
+{
+  "sections": {
+    "hero": {
+      "type": "about-hero",
+      "settings": {}
+    },
+    "story_1": {
+      "type": "about-story",
+      "settings": {
+        "bg_color": "#4A8B6A",
+        "title": "Our story stems from the pursuit of comfort."
+      }
+    },
+    "story_2": {
+      "type": "about-story",
+      "settings": {
+        "bg_color": "#1A3026",
+        "title": "Our story stems from the pursuit of comfort."
+      }
+    },
+    "stats": {
+      "type": "about-stats",
+      "settings": {}
+    },
+    "partners": {
+      "type": "about-partners",
+      "settings": {}
+    },
+    "cta": {
+      "type": "cta-banner",
+      "settings": {}
+    }
+  ,
+  "order": [
+    "hero",
+    "story_1",
+    "story_2",
+    "stats",
+    "partners",
+    "cta"
+  ]
+}

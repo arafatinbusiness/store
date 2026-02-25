@@ -1,0 +1,115 @@
+<div class="main-collection container py-12">
+  <div class="collection-header mb-8">
+    <h1 class="h2">{{ collection.title }}</h1>
+  </div>
+
+  <div class="collection-layout flex flex-col lg:flex-row gap-8">
+    {%- if section.settings.show_sidebar -%}
+      <aside class="collection-filters w-full lg:w-64">
+        <div class="filter-card bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+          <div class="filter-header flex justify-between items-center mb-6 pb-4 border-b border-gray-100">
+            <span class="font-bold">{{ section.settings.filter_label }}</span>
+            <span class="text-tula-green text-xs font-bold">{{ collection.products_count }} results</span>
+          </div>
+
+          {%- for filter in collection.filters -%}
+            <div class="filter-group mb-6">
+              <button class="filter-trigger w-full flex justify-between items-center font-bold text-sm mb-4">
+                {{ filter.label }}
+                {% render 'icon-minus' %}
+              </button>
+              <div class="filter-options space-y-3">
+                {%- for value in filter.values -%}
+                  <label class="flex items-center gap-3 cursor-pointer">
+                    <input type="checkbox" name="{{ value.param_name }}" value="{{ value.value }}" {% if value.active %}checked{% endif %} class="hidden">
+                    <div class="checkbox-ui w-4 h-4 rounded border border-gray-300 {% if value.active %}bg-tula-green border-tula-green{% endif %}"></div>
+                    <span class="text-xs {% if value.active %}font-bold text-tula-dark{% else %}text-gray-500{% endif %}">{{ value.label }}</span>
+                  </label>
+                {%- endfor -%}
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+      </aside>
+    {%- endif -%}
+
+    <div class="collection-products flex-1">
+      <div class="collection-toolbar flex justify-end mb-6">
+        <div class="sort-by flex items-center gap-2 text-sm">
+          <span class="text-gray-500">Sort by</span>
+          <select name="sort_by" class="font-bold border-none bg-transparent focus:ring-0">
+            {%- for option in collection.sort_options -%}
+              <option value="{{ option.value }}" {% if option.value == collection.sort_by %}selected{% endif %}>{{ option.name }}</option>
+            {%- endfor -%}
+          </select>
+        </div>
+      </div>
+
+      <div class="product-list space-y-6">
+        {%- for product in collection.products -%}
+          <div class="product-list-item bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex flex-col md:flex-row gap-8">
+            <div class="item-image w-full md:w-48 h-48 bg-gray-50 rounded-xl flex items-center justify-center">
+              <img src="{{ product.featured_image | image_url: width: 400 }}" alt="{{ product.title }}" class="w-4/5 h-4/5 object-contain">
+            </div>
+            
+            <div class="item-content flex-1">
+              <h3 class="h3 mb-4">{{ product.title }}</h3>
+              <div class="item-specs text-xs text-gray-500">
+                {{ product.description | truncatewords: 30 }}
+              </div>
+            </div>
+
+            <div class="item-actions w-full md:w-48 flex flex-col justify-between items-end border-l border-gray-100 pl-8">
+              <div class="rating text-right">
+                <div class="stars text-yellow-400">★★★★★</div>
+                <span class="text-[10px] text-gray-400 font-bold">4.5 | 260 REVIEWS</span>
+              </div>
+              
+              <div class="price text-right">
+                <span class="text-3xl font-black text-tula-green">{{ product.price | money }}</span>
+              </div>
+
+              <a href="{{ product.url }}" class="button button--primary w-full text-center">
+                {{ section.settings.button_label }}
+              </a>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Main Collection",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Sidebar"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sidebar",
+      "label": "Show sidebar",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "filter_label",
+      "label": "Filter Label",
+      "default": "Filter"
+    },
+    {
+      "type": "header",
+      "content": "Product Cards"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "View More"
+    }
+  ]
+}
+{% endschema %}
