@@ -228,12 +228,12 @@ const CartDrawer = ({
 
 const Hero = () => {
   return (
-    <section className="relative h-[300px] overflow-hidden bg-gray-100">
+    <section className="relative h-[600px] overflow-hidden bg-gray-100">
       <div className="absolute inset-0 flex items-center justify-center">
         <img
           src="/shopify-theme/assets/hero-banner-default.png"
           alt="Medical professional"
-          className="h-full w-auto object-contain"
+          className="h-full w-full object-cover object-center"
         />
       </div>
       <div className="absolute inset-0 bg-black/40" />

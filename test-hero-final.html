@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+g<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hero Test</title>
+    <title>Hero Test Final</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -25,6 +25,23 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 32px;
+            border-radius: 9999px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+        .button--primary {
+            background-color: var(--color-tula-green);
+            color: var(--color-tula-dark);
+        }
+        .button--primary:hover {
+            background-color: #5cc976;
         }
         .hero {
             position: relative;
@@ -62,20 +79,16 @@
             font-size: 1.2rem;
             margin-bottom: 2rem;
         }
-        .button {
-            display: inline-block;
-            padding: 12px 32px;
-            border-radius: 9999px;
-            font-weight: 700;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: none;
-            background-color: var(--color-tula-green);
-            color: var(--color-tula-dark);
+        .hero__social-proof {
+            margin-bottom: 1rem;
         }
-        .button:hover {
-            background-color: #5cc976;
+        .stars {
+            display: inline-block;
+            color: gold;
+        }
+        .label {
+            margin-left: 0.5rem;
+            font-weight: 600;
         }
     </style>
 </head>

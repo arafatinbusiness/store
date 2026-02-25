@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero Fixed Test</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* Copy the entire base.css */
+        /* Base Shopify Theme Styles for Tula */
+
+:root {
+  --font-body-family: 'Inter', sans-serif;
+  --color-tula-green: #70E08B;
+  --color-tula-dark: #1A3026;
+  --color-tula-light: #F4FBF7;
+}
+
+body {
+  font-family: var(--font-body-family);
+  color: var(--color-tula-dark);
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.button {
+  display: inline-block;
+  padding: 12px 32px;
+  border-radius: 9999px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.button--primary {
+  background-color: var(--color-tula-green);
+  color: var(--color-tula-dark);
+}
+
+.button--primary:hover {
+  background-color: #5cc976;
+}
+
+/* Header Styles */
+.header-wrapper {
+  background: white;
+}
+
+.announcement-bar {
+  padding: 8px 0;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+/* Hero Styles */
+.hero {
+  position: relative;
+  height: 2100px;
+  overflow: hidden;
+  background-color: var(--color-tula-dark);
+}
+
+.hero__img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: -1;
+}
+
+.hero__content {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  color: white;
+  z-index: 1;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.hero__text-box {
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    height: 1500px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    height: 1200px;
+  }
+}
+
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="hero__image">
+            <img src="shopify-theme/assets/hero-banner-default.png" alt="Default hero banner" loading="lazy" class="hero__img">
+        </div>
+        <div class="hero__content container">
+            <div class="hero__text-box">
+                <div class="hero__social-proof">
+                    <div class="stars">★★★★★</div>
+                    <span class="label">SOCIAL PROF HERE</span>
+                </div>
+                <h1 class="hero__title h0">Taking care of you can be simpler than it seems.</h1>
+                <div class="hero__description">
+                    <p>When you're facing a new diagnosis, the last thing you need is confusion, delays, or unanswered questions.</p>
+                </div>
+                <a href="#" class="button button--primary">Contact Our Team</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
